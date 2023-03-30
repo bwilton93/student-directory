@@ -23,11 +23,11 @@ def print_header
 end
 
 def print_names(students)
-  print "Search alphabetically: "
+  print "Search alphabetically (hit return to show all names): "
   letter = gets.downcase.chomp
   students.each_with_index do |student, index|
     student_number = index + 1
-    if student[:name][0].downcase == letter
+    if student[:name][0].downcase == letter || letter.empty?
       puts "#{student_number}. #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
