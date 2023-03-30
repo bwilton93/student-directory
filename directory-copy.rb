@@ -22,10 +22,14 @@ def print_header
   puts "-------------"
 end
 
-def print(students)
+def print_names(students)
+  print "Search alphabetically: "
+  letter = gets.downcase.chomp
   students.each_with_index do |student, index|
     student_number = index + 1
-    puts "#{student_number}. #{student[:name]} (#{student[:cohort]} cohort)"
+    if student[:name][0].downcase == letter
+      puts "#{student_number}. #{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 
@@ -36,5 +40,5 @@ end
 # nothing happens until we call the methods
 students = input_students
 print_header
-print(students)
+print_names(students)
 print_footer(students)
