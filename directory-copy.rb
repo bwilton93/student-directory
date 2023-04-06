@@ -108,6 +108,11 @@ end
 
 def print_names(students)
   while true
+    if students.length == 0
+      puts "There are no students in this list"
+      break
+    end
+
     print "Would you like to search alphabetically, or by cohort: "
     input = gets.downcase.chomp
     if input == "alphabetically" || input == ''
@@ -121,6 +126,10 @@ def print_names(students)
 end
 
 def print_footer(names)
+  if names.length == 0
+    return
+  end
+
   print "Overall, we have #{names.count} "
   if names.count > 1
     puts "great students"
