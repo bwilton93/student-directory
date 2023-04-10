@@ -1,30 +1,24 @@
-def months_list
-    months = [
-    'january',
-    'february',
-    'march',
-    'april',
-    'may',
-    'june',
-    'july',
-    'august',
-    'september',
-    'october',
-    'november',
-    'december'
-  ]
-
-  return months
-end
+$months = [
+'january',
+'february',
+'march',
+'april',
+'may',
+'june',
+'july',
+'august',
+'september',
+'october',
+'november',
+'december'
+]
 
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
 
   students = []
-
-  months = months_list
-
+  
   # create empty array of students
   # get the first name
   name = gets.chomp
@@ -32,10 +26,10 @@ def input_students
   while !name.empty? do
     # add the student hash to the array
     cohort = ''
-    while !months.include?(cohort)
+    while !$months.include?(cohort)
       print "Cohort: "
       cohort = gets.downcase.chomp
-      if !months.include?(cohort)
+      if !$months.include?(cohort)
         puts "Invalid month"
       end 
     end
@@ -65,9 +59,7 @@ def alphabetical_search(students)
   end
 end
 
-def cohort_search(students)
-  months = months_list
-  
+def cohort_search(students)  
   # Create list of students sorted by cohort
   students_by_cohort = {}
 
@@ -83,10 +75,10 @@ def cohort_search(students)
   
   month = ''
   
-  while !months.include?(month)
+  while !$months.include?(month)
     print "Which cohort would you like to check? "
     month = gets.downcase.chomp
-    if !months.include?(month)
+    if !$months.include?(month)
       puts "Invalid month"
     end 
   end
