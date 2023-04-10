@@ -9,7 +9,12 @@ def input_students
   while !name.empty? do
     # add the student hash to the array
     students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    print "Now we have #{students.count} "
+    if students.count > 1
+      puts "students"
+    else
+      puts "student"
+    end
     # get another name
     name = gets.chomp
   end
@@ -22,7 +27,7 @@ def print_header
   puts "-------------"
 end
 
-def print(students)
+def print_list(students)
   students.each_with_index do |student, index|
     student_number = index + 1
     puts "#{student_number}. #{student[:name]} (#{student[:cohort]} cohort)"
@@ -30,11 +35,20 @@ def print(students)
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  if names.length == 0
+    return
+  end
+
+  print "Overall, we have #{names.count} "
+  if names.count > 1
+    puts "great students"
+  else
+    puts "great student"
+  end
 end
 
 # nothing happens until we call the methods
 students = input_students
 print_header
-print(students)
+print_list(students)
 print_footer(students)
