@@ -94,26 +94,30 @@ end
 
 def save_students
   get_file_name
-  file = File.open(@filename, "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  File.open(@filename, "w") do |file|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
+    save_message(@filename)
   end
-  save_message(@filename)
-  file.close
 end
 
 def load_students(filename)
-  @students = []
-  file = File.open(@filename, "r")
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    append_students(name, cohort)
+  if !File.exist?(@filename)
+    puts "Sorry that file does not exist"
+  else
+    @students = []
+    File.open(@filename, "r") do |file|
+      file.readlines.each do |line|
+      name, cohort = line.chomp.split(',')
+        append_students(name, cohort)
+      end
+      load_message(@filename)
+      new_line
+    end
   end
-  load_message(@filename)
-  new_line
-  file.close
 end
 
 def try_load_students
